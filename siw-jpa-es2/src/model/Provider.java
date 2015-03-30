@@ -2,6 +2,7 @@ package model;
 
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class Provider {
 	private String email;
 	private String vatin;
 
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.REMOVE})
 	private List<Product> productsList;
 
 	public String getName() {

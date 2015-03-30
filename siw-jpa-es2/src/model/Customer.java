@@ -5,6 +5,7 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
+@Table(uniqueConstraints=@UniqueConstraint(columnNames={"firstname","lastname"}))
 
 public class Customer {
 	
@@ -32,9 +33,28 @@ public class Customer {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date registrationDate;
 	
-	@OneToMany
-	@JoinColumn(name = "orders_id")
+	@OneToMany(cascade = {CascadeType.REMOVE})
+	@JoinColumn(name = "customer_id")
+	@OrderBy("creationTime asc")
 	private List<Orders> listOrder;
+	
+	@OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+	@JoinColumn(name = "customer_address")
+	private Address addres;
+
+	public Customer(String firstName, String lastName, String email,
+			String phoneNumber, Date dateOfBirth, Date registrationDate,
+			Address addres) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.dateOfBirth = dateOfBirth;
+		this.registrationDate = registrationDate;
+		this.addres = addres;
+	}
+	
+	public Customer(){}
 
 	public String getFirstName() {
 		return firstName;
@@ -94,5 +114,13 @@ public class Customer {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Address getAddres() {
+		return addres;
+	}
+
+	public void setAddres(Address addres) {
+		this.addres = addres;
 	}
 }

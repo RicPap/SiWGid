@@ -19,7 +19,7 @@ public class Orders {
 	@Column(nullable = false)
 	private Customer customer;
 	
-	@OneToMany
+	@OneToMany(cascade={CascadeType.REMOVE})
 	@JoinColumn(name = "orders_id")
 	private List<OrderLine> orderLines;
 

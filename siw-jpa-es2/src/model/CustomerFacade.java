@@ -22,4 +22,12 @@ public class CustomerFacade {
 		em.close();
 		ef.close();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public static List<Customer> viewCustomers() {
+		EntityManagerFactory ef = Persistence.createEntityManagerFactory("model-unit");
+		EntityManager em = ef.createEntityManager();
+		Query query = em.createQuery("SELECT c FROM Customer c");
+		return query.getResultList();
+	}
 }

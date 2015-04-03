@@ -123,4 +123,13 @@ public class Customer {
 	public void setAddres(Address addres) {
 		this.addres = addres;
 	}
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", email=" + email
+				+ ", phoneNumber=" + phoneNumber + ", dateOfBirth="
+				+ dateOfBirth + ", registrationDate=" + registrationDate
+				+ ", listOrder=" + listOrder + ", addres=" + addres + "]";
+	}
 }

@@ -17,9 +17,10 @@ public class Orders {
 	private Date creationTime;
 	
 	@Column(nullable = false)
+	@ManyToOne
 	private Customer customer;
 	
-	@OneToMany(cascade={CascadeType.REMOVE})
+	@OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.REMOVE,CascadeType.PERSIST})
 	@JoinColumn(name = "orders_id")
 	private List<OrderLine> orderLines;
 

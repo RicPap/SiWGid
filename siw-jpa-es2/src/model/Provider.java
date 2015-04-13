@@ -9,8 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(name="retriveProviders",query="SELECT prov FROM Provider prov WHERE")
 
 public class Provider {
 
@@ -26,9 +28,10 @@ public class Provider {
 
 	@Column(nullable = false,unique = true)
 	private String email;
+	
 	private String vatin;
 
-	@ManyToMany(cascade = {CascadeType.REMOVE})
+	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
 	private List<Product> productsList;
 
 	public String getName() {
@@ -73,5 +76,12 @@ public class Provider {
 
 	public Long getId() {
 		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Provider [id=" + id + ", name=" + name + ", phoneNumber="
+				+ phoneNumber + ", email=" + email + ", vatin=" + vatin
+				+ ", productsList=" + productsList + "]";
 	}
 }

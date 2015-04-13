@@ -22,6 +22,7 @@ public class Product {
 	@Column(nullable = false,unique = true)
 	private String name;
 	
+	@Column(length=255)
 	private String description;
 	
 	@Column(nullable = false)
@@ -66,5 +67,12 @@ public class Product {
 	
 	public Long getId() {
 		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", description="
+				+ description + ", price=" + price + ", providersList="
+				+ providersList + "]";
 	}
 }

@@ -80,4 +80,11 @@ public class Address {
 	public Long getId() {
 		return id;
 	}
+
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", street=" + street + ", city=" + city
+				+ ", state=" + state + ", zipCode=" + zipCode + ", country="
+				+ country + "]";
+	}
 }
